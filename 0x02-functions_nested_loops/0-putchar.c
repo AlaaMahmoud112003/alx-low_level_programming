@@ -1,9 +1,11 @@
 #include "main.h"
 	/**
-	 * main - print _putchar
-	 * is written by alaa
-	 * Return: 0
+	 * main - Entry point
+	 * Description: print _putchar
+	 * Return: Always 0
 	 */
+
+
 	int main(void)
 	{
 	_putchar('_');
@@ -17,4 +19,3 @@
 	_putchar('\n');
 	return (0);
 	}
-
