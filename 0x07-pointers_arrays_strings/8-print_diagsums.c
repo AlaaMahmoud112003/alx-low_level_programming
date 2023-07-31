@@ -1,14 +1,14 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * print_diagsums - Entry any point
+ * print_diagsums - Entry data point
  * @a: input data
  * @size: input any data
- * Return: Always 0  is (Successed)
+ * Return: Always 0 is (Successed)
  */
 void print_diagsums(int *a, int size)
 {
-	int num1, num2,x;
+	int num1, num2, x;
 
 	num1 = 0;
 	num2 = 0;
