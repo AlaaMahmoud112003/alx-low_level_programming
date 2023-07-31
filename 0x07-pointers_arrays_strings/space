@@ -1,0 +1,3 @@
+trchr.c:12: ERROR: spaces required around that '=' (ctx:WxV)
+2-strchr.c:12: ERROR: space required after that ';' (ctx:VxV)
+total: 2 errors, 1 warnings, 19 lines checked
