@@ -34,11 +34,11 @@ int main(int argc, char *argv[])
 	{
 		while (num >= coins[x])
 		{
-			result++;	
-			num -= coins[x];
+			result++;
+			num -= coins[j];
 		}
 	}
 
 	printf("%d\n", result);
 	return (0);
-}		
+}

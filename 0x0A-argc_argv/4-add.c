@@ -53,8 +53,7 @@ int main(int argc, char *argv[])
 			str_to_int = atoi(argv[num]); /*ATOI convert string to int*/
 			sum += str_to_int;
 		}
-                           /*Condition else */
-		else
+		else  /*Condition else */
 		{
 			printf("Error\n");
 			return (1);
