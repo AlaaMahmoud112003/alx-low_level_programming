@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 /**
  * str_concat - the get ends of input and addition together for size
  * @s1: the input 1
@@ -8,35 +9,35 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-	char *conct;
-	int x, y;
+int x, y, num1, num2, num;
+char *result;
 
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
+num1 = num2 = 0;
 
-	x = y = 0;
-	while (s1[x] != '\0')
-		x++;
-	while (s2[y] != '\0')
-		y++;
-	conct = malloc(sizeof(char) * (x + y + 1));
+if (s1 != NULL)
+{
+          x = 0;
+      while (s1[x++] != '\0')
+             num1++;
+      }
 
-	if (conct == NULL)
-		return (NULL);
-	x = y = 0;
-	while (s1[x] != '\0')
-	{
-		conct[x] = s1[x];
-		x++;
-	}
+      if (s2 != NULL)
+      {
+          x = 0;
+      while (s2[x++] != '\0')
+             num2++;
+      }
 
-	while (s2[y] != '\0')
-	{
-		conct[y] = s2[y];
-		x++, y++;
-	}
-	conct[x] = '\0';
-	return (conct);
+      num = num1 + num2;
+      result = (char *)malloc(sizeof(char) * (num + 1));
+     if (result == NULL)
+       return (NULL);
+
+     for (x = 0; x < num1; x++)
+           result[x] = s1[x];
+     for (y = 0; y < num2; y++, y++)
+            result[x] = s2[y];
+       result[num] = '\0';
+
+     return (result);
 }
