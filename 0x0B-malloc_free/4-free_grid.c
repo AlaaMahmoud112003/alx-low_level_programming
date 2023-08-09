@@ -4,7 +4,7 @@
 /**
  * free_grid - free the array
  * @grid: the grid
- * @height: height 
+ * @height: height
  * Description: frees memory the grid
  * Return: 0
  *
