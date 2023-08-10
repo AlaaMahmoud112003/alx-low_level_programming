@@ -1,148 +1,101 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+#define ERR_MSG "Error"
 
 /**
- * _print - move string to the left and print string
- * @str: move to string
- * @l:  the size of string
+ * is_digit - checks string contains a non-digit char
+ * @s:  the string to evaluate
  *
- * Return: 0
+ * Return: 0 if a non-digit , 1 otherwise
  */
-void _print(char *str, int l)
+int is_digit(char *s)
 {
-	int x, y;
+	int x = 0;
 
-	x = y = 0;
-	while (x < l)
+	while (s[x])
 	{
-		if (str[x] != '0')
-			y = 1;
-		if (y || x == l - 1)
-			_putchar(str[x]);
+		if (s[x] < '0' || s[x] > '9')
+			return (0);
 		x++;
 	}
-
-	_putchar('\n');
-	free(str);
+	return (1);
 }
 
 /**
- * mul - multiplie char with string
- *@n:  the char to multip
- * @num:  the string to multip
- * @num_index: last without NULL index num
- * @dest: destinate of the multiplication
- * @dest_index: max index to start the addition
+ * _strlen - return length of  string
+ * @s: the string to evaluate
  *
- * Return: pointer if is NULL on failure
+ * Return: length of the string
  */
-char *mul(char n, char *num, int num_index, char *dest, int dest_index)
+int _strlen(char *s)
 {
-	int y, b, nul1, nul2, add1, add2;
+	int x = 0;
 
-	nul2 = add2 = 0;
-	for (y = num_index, b = dest_index; y >= 0; y--, b--)
+	while (s[x] != '\0')
 	{
-		nul1 = (n - '0') * (num[y] - '0') + nul2;
-		nul2 = nul1 / 10;
-		add1 = (dest[b] - '0') + (nul2 % 10) + add2;
-		add2 = add1 / 10;
-		dest[b] = add1 % 10 + '0';
+		x++;
 	}
-	for (add2 += nul2; b >= 0 && add2; b--)
-	{
-		add1 = (dest[b] - '0') + add2;
-		add2 = add1 / 10;
-		dest[b] = add1 % 10 + '0';
-	}
-	if (add2)
-	{
-		return (NULL);
-	}
-	return (dest);
+	return (x);
 }
 
 /**
- * check_for_digits - check argument are digits
- * @av: pointer to the argument
- *
- * Return: 0 if success digits, 1 if fail
+ * errors - the handle the errors for main
  */
-int check_for_digits(char **av)
+void errors(void)
 {
-	int x, y;
-
-	for (x = 1; x < 3; x++)
-	{
-		for (y = 0; av[x][y]; y++)
-		{
-			if (av[x][y] < '0' || av[x][y] > '9')
-				return (1);
-		}
-	}
-	return (0);
+	printf("Error\n");
+	exit(98);
 }
 
 /**
- * init - initializtion the string
- * @str:  the sting to initializtion
- * @l: length of the strinf
+ * main - multiplition between two positive number
+ * @argc: the number of arguments
+ * @argv: the array of arguments
  *
- * Return: 0
+ * Return: always 0  is (Successed)
  */
-void init(char *str, int l)
-{
-	int x;
-
-	for (x = 0; x < l; x++)
-		str[x] = '0';
-	str[x] = '\0';
-}
-
-/**
- * main - multipltion between two numbers
- * @argc: number of the argument
- * @argv:  the number of argument vector
- *
- * Return: zero if sucess or exit of 98 if fail
- */
-
 int main(int argc, char *argv[])
 {
-	int x1, x2, xn, tx, x;
-	char *c;
-	char *d;
-	char f[] = "Error\n";
+	char *s1, *s2;
+	int nu1, nu2, nu, x, arry, digital1, digital2, *result, b = 0;
 
-	if (argc != 3 || check_for_digits(argv))
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+		errors();
+	nu1 = _strlen(s1);
+	nu2 = _strlen(s2);
+	nu = nu1 + nu2 + 1;
+	result = malloc(sizeof(int) * nu);
+	if (!result)
+		return (1);
+	for (x = 0; x <= nu1 + nu2; x++)
+		result[x] = 0;
+	for (nu1 = nu1 - 1; nu1 >= 0; nu1--)
 	{
-		for (tx = 0; f[tx]; tx++)
-			_putchar(f[tx]);
-		exit(98);
-	}
-	for (x1 = 0; argv[1][x1]; x1++)
-		;
-	for (x2 = 0; argv[2][x2]; x2++)
-		;
-	xn = x1 + x2 + 1;
-	c = malloc(xn * sizeof(char));
-	if (c == NULL)
-	{
-		for (tx = 0; f[tx]; tx++)
-			_putchar(f[tx]);
-		exit(98);
-	}
-	init(c, xn - 1);
-	for (tx = x2 - 1, x = 0; tx >= 0; tx--, x++)
-	{
-		d = mul(argv[2][tx], argv[1], x1 - 1, c, (xn - 2) - x);
-		if (d == NULL)
+		digital1 = s1[nu1] - '0';
+		arry = 0;
+		for (nu2 = _strlen(s2) - 1; nu2 >= 0; nu2--)
 		{
-			for (tx = 0; f[tx]; tx++)
-				_putchar(f[tx]);
-			free(c);
-			exit(98);
+			digital2 = s2[nu2] - '0';
+			arry += result[nu1 + nu2 + 1] + (digital1 * digital2);
+			result[nu1 + nu2 + 1] = arry % 10;
+			arry /= 10;
 		}
+		if (arry > 0)
+			result[nu1 + nu2 + 1] += arry;
 	}
-	_print(c, xn - 1);
+	for (x = 0; x < nu - 1; x++)
+	{
+		if (result[x])
+			b = 1;
+		if (b)
+			_putchar(result[x] + '0');
+	}
+	if (!x)
+		_putchar('0');
+	_putchar('\n');
+	free(result);
 	return (0);
 }
