@@ -23,7 +23,7 @@ void print_all(const char * const format, ...)
 				printf("%c", va_arg(a_list, int));
 				lin = 0;
 				break;
-			case 'x':
+			case 'i':
 				printf("%i", va_arg(a_list, int));
 				lin = 0;
 				break;
