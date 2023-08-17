@@ -1,2 +1,1 @@
-c function pointers
-readme file
+0x0F. C - Function pointers
