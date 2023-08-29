@@ -4,7 +4,7 @@
  * find_listint_loop - function finds the loop in a linked list.
  * @head: is the pointer to the beginning of the list
  *
- * Return: return address of the node where the loop starts or NULL if there's no loop
+ * Return: address of  node where the loop startor NULL if there's no loop
  */
 listint_t *find_listint_loop(listint_t *head)
 {
