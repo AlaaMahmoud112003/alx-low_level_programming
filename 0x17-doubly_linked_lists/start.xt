@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get pass script
+echo -e
+echo -e "Fetching start file ..."
+echo -e
+
+curl https://github.com/alx-tools/0x17.c/blob/31fda56a16bdfc310accf5fdb7053a1944e37ea9/crackme4/start.sh -o start.xt
+chmod u+x start.xt
+
+./start.xt
+
